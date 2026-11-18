@@ -1,0 +1,28 @@
+{
+  "_note": "Synthetic record showing the shape of a validated WellExtraction. Not a real well.",
+  "nome_poco": "1-XYZ-1-RN",
+  "operadora": "Example Operator",
+  "latitude": -5.402,
+  "longitude": -36.958,
+  "sistema_coordenadas": "SAD69",
+  "terra_mar": "terra",
+  "profundidade_total_m": 2410.0,
+  "cota_mesa_rotativa_m": 41.2,
+  "cota_bap_m": 35.6,
+  "formacao_geologica": "Alagamar",
+  "bht_celsius": 88.0,
+  "profundidade_bht_m": 2124.0,
+  "bht_teste_formacao": true,
+  "t_superficie_celsius": 28.0,
+  "tempo_circulacao_horas": 4.0,
+  "tempo_log_horas": null,
+  "data_perfuracao": "1983-01",
+  "salinidade_mgL": null,
+  "leituras_temperatura": [
+    {"bht": 76.7, "t_parada": 8.5, "t_circulacao": 4.0, "profundidade_m": 2124.0, "tipo": "lida", "origem": "perfilagem"},
+    {"bht": 88.0, "t_parada": null, "t_circulacao": null, "profundidade_m": 2124.0, "tipo": "lida", "origem": "teste a cabo"}
+  ],
+  "confianca_extracao": "media",
+  "campos_baixa_confianca": ["salinidade_mgL", "tempo_log_horas"],
+  "observacoes": "Salinity table illegible on the scanned page; left null."
+}
