@@ -1,8 +1,15 @@
 # ResonAnza: architecture
 
-ResonAnza ([resonanza.com.br](https://resonanza.com.br)) reads Brazil's public oil and gas well records and turns them into temperature data you can trust, to screen for renewable heat. This repository documents how the pipeline works. The product code is private; I'm happy to walk through it in an interview.
+ResonAnza ([resonanza.com.br](https://resonanza.com.br)) reads Brazil's public well records, from oil and gas wells and from water wells, and turns them into data you can trust about subsurface temperature and groundwater. This repository documents the well-record pipeline, starting with temperature. The product code is private; I'm happy to walk through it in an interview.
 
 Built by [Vinícius Freire](https://www.linkedin.com/in/viniciuspaesfreire/) · [portfolio](https://prinny2.github.io) · study stage, no paying customers.
+
+## Two fronts
+
+- **ResonAnza Intelligence**: hydrogeological intelligence (water-risk mapping, screening and aquifer monitoring) built only from measured public data. Open to pilots.
+- **ResonAnza Deep**: reading water properties at depth from petroleum well logs. Research in validation; not offered as a product until it passes blind validation and independent review.
+
+Both follow the rule below: every number is labeled measured or modeled, and a modeled number is never presented as a measurement.
 
 ---
 
@@ -78,7 +85,7 @@ Every one of these was confirmed on real wells and is now either a parser rule o
 
 Every number carries its origin. A temperature read in a well is **measured**. A temperature estimated as `T_surface + G_literature × depth` is **modeled**, and recomputing a gradient from it just returns the literature value. That's circular, so modeled numbers are used for depth screening only, never as thermal evidence.
 
-That rule changed the conclusions. In the Recôncavo basin, five wells with logged BHT gave a measured gradient of **24.7 °C/km** (95% CI 21–28). The literature figure was about 38. The measured onshore gradients ruled out power generation (ORC) and moved the focus to direct-use heat.
+That rule changed the conclusions. In the Recôncavo basin, five wells with logged BHT gave a measured gradient of **24.7 °C/km** (95% CI 21–28). The literature figure was about 38. The measured onshore gradients ruled out power generation (ORC) and moved the focus to direct-use heat, and later to groundwater.
 
 ## Interfaces
 
@@ -89,8 +96,8 @@ That rule changed the conclusions. In the Recôncavo basin, five wells with logg
 
 ## Stack and operations
 
-Python 3.12, FastAPI, SQLAlchemy, Pydantic, Typer, lasio, pypdf, Anthropic API · SQLite locally, Postgres on Google Cloud Run · React 19 · field form on AWS Lightsail with Docker Compose and Caddy · GitHub Actions running ruff, pytest and coverage · **450+ pytest tests**.
+Python 3.12, FastAPI, SQLAlchemy, Pydantic, Typer, lasio, pypdf, Anthropic API · SQLite locally, Postgres on Google Cloud Run · React 19 · field form on AWS Lightsail with Docker Compose and Caddy · GitHub Actions running ruff, pytest and coverage · **637 pytest tests**.
 
 ---
 
-**Em português:** a ResonAnza lê os registros públicos da ANP (31.244 poços) e transforma relatórios escaneados, fichas AGP e perfis LAS em dados de temperatura confiáveis. Cada número indica se foi medido ou modelado. O código é privado; este repositório explica a arquitetura.
+**Em português:** a ResonAnza lê os registros públicos de poços (os 31.244 poços de petróleo da ANP e os poços d'água do SIAGAS) e transforma relatórios escaneados, fichas AGP e perfis LAS em dados confiáveis de temperatura e de água subterrânea. Duas frentes: a **Intelligence** (risco hídrico e monitoramento com dados medidos, aberta a pilotos) e a **Deep** (a água em profundidade lida nos perfis de petróleo, em validação, não oferecida como produto). Cada número indica se foi medido ou modelado. O código é privado; este repositório explica a arquitetura.
